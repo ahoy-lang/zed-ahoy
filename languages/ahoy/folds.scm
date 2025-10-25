@@ -1,6 +1,4 @@
-[
-  (function_declaration)
-  (if_statement)
-  (loop_statement)
-  (switch_statement)
-] @fold
+(function_declaration) @fold
+(if_statement) @fold
+(loop_statement) @fold
+(switch_statement) @fold

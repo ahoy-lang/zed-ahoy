@@ -1,12 +1,5 @@
-; Indent
-[
-  (function_declaration)
-  (if_statement)
-  (loop_statement)
-  (switch_statement)
-] @indent
-
-; Outdent
-[
-  "}"
-] @outdent
+; Indent blocks
+(function_declaration) @indent
+(if_statement) @indent
+(loop_statement) @indent
+(switch_statement) @indent
