@@ -4,9 +4,8 @@ version = "0.1.0"
 schema_version = 1
 authors = ["Ahoy Contributors"]
 description = "Ahoy language support for Zed"
-repository = "https://github.com/ahoy-lang/ahoy/tree/master/zed-ahoy"
-commit = "master"
+repository = "https://github.com/ahoy-lang/zed-ahoy"
 
 [grammars.ahoy]
-repository = "https://github.com/ahoy-lang/ahoy/tree/master/tree-sitter-ahoy"
+repository = "https://github.com/ahoy-lang/tree-sitter-ahoy"
 commit = "master"
