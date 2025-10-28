@@ -13,7 +13,7 @@ impl zed::Extension for AhoyExtension {
         _worktree: &zed::Worktree,
     ) -> Result<zed::Command> {
         Ok(zed::Command {
-            command: "".to_string(),
+            command: "ahoy-lsp".to_string(),
             args: vec![],
             env: Default::default(),
         })
