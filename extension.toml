@@ -1,11 +1,15 @@
 id = "ahoy"
 name = "Ahoy"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
 authors = ["Ahoy Contributors"]
-description = "Ahoy language support for Zed"
+description = "Ahoy language support for Zed with LSP"
 repository = "https://github.com/ahoy-lang/zed-ahoy"
 
 [grammars.ahoy]
 repository = "https://github.com/ahoy-lang/tree-sitter-ahoy"
 commit = "master"
+
+[language_servers.ahoy-lsp]
+name = "Ahoy Language Server"
+language = "ahoy"
