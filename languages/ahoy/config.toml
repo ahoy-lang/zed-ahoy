@@ -3,6 +3,7 @@ grammar = "ahoy"
 path_suffixes = ["ahoy"]
 line_comments = ["? "]
 autoclose_before = ";:.,=}])>"
+language_servers = ["ahoy-lsp"]
 brackets = [
     { start = "{", end = "}", close = true, newline = true },
     { start = "[", end = "]", close = true, newline = true },
