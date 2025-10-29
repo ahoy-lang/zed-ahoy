@@ -12,4 +12,4 @@ commit = "master"
 
 [language_servers.ahoy-lsp]
 name = "Ahoy Language Server"
-language = "ahoy"
+languages = ["Ahoy"]

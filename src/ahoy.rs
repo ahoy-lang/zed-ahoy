@@ -60,7 +60,6 @@ impl zed::Extension for AhoyExtension {
             cached_binary_path: None,
         }
     }
-
     fn language_server_command(
         &mut self,
         language_server_id: &LanguageServerId,

@@ -1,42 +1,50 @@
-# Sample Ahoy Program
-# This file demonstrates syntax highlighting
+? Sample Ahoy Program
+? This file demonstrates syntax highlighting
 
 import "std/io"
 
-# Function definition
-func factorial(n: int) {
-    if n is 0 then {
-        return 1
-    } else {
-        return n times factorial(n minus 1)
-    }
-}
+    loop i to 5 :
+        print(i)
 
-# Main program
+switch day_of_week on
+    "Monday" : print("Start of the week")
+    "Friday" : print("End of the week")
+
+
+# Function definition
+factorial:: |n: int|  string:
+    if n is 0 then return 1
+      else return n times factorial(n minus 1)
+
+loop till i is 3 :
+    print("Looping: " plus i)
+    i plus_equals 1
+
+? Main program
 func main() {
     # Variables
     name: string
     name: "Ahoy"
-    
+
     # Boolean
     is_ready: bool
     is_ready: true
-    
+
     # Numbers
     count: int
     count: 42
-    
+
     pi: float
     pi: 3.14159
-    
+
     # Print statement
     print("Welcome to " plus name)
-    
+
     # Loop example
     loop i to 5 {
         print("Count: " plus i)
     }
-    
+
     # Conditional
     if count greater_than 10 then {
         print("Count is large")
@@ -45,7 +53,7 @@ func main() {
     } else {
         print("Count is small")
     }
-    
+
     # Switch statement
     switch name {
         "Ahoy": {
@@ -55,7 +63,7 @@ func main() {
             print("Hello World!")
         }
     }
-    
+
     # Function call
     result: factorial(5)
     print("Factorial: " plus result)
