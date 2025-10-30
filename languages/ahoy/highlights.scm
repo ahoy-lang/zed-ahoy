@@ -22,9 +22,11 @@
   "type"
   "enum"
   "program"
-  "break"
-  "skip"
 ] @keyword
+
+; Control flow statements
+(break_statement) @keyword
+(skip_statement) @keyword
 
 ; Function declarations - highlight the function name
 (function_declaration
@@ -77,8 +79,8 @@
   "times"
   "div"
   "mod"
-  "greater"
-  "lesser"
+  "greater_than"
+  "less_than"
 ] @operator
 
 ; Punctuation
