@@ -1,0 +1,57 @@
+? Simple Ahoy LSP Test File
+? This file tests basic LSP features
+
+? Test 1: Valid function (no errors)
+func greet name string do
+    ahoy "Hello, " name
+end
+
+? Test 2: Variable declarations
+age: 25
+name: "Alice"
+is_active: true
+
+? Test 3: If statement
+if age greater 18 then
+    ahoy "Adult"
+else
+    ahoy "Minor"
+end
+
+? Test 4: Loop
+loop i:1 to 5 do
+    ahoy "Count: " i
+end
+
+? Test 5: Function with return type
+add :: |x:int, y:int| int  do
+    return x plus y
+end
+
+? Test 6: Use the function (test go-to-definition)
+? Ctrl+Click on 'add' below should jump to line 23
+result: add 5 3
+
+? Test 7: Enum
+Status enum:
+    PENDING
+    ACTIVE
+    DONE
+end
+
+? Test 8: Struct
+Person struct:
+    name string
+    age int
+end
+
+? Test 9: Array
+numbers: [1, 2, 3, 4, 5]
+first: numbers[0]
+
+? Test 10: Dictionary
+user: {"name": "Bob", "age": 30}
+
+? Hover over any symbol to see type info
+? Type "fu" and press Ctrl+Space for autocomplete
+? Ctrl+Click on variables to jump to their definition

@@ -1,72 +1,50 @@
+program main
 ? Sample Ahoy Program
 ? This file demonstrates syntax highlighting
 
 import "std/io"
 
-    loop i to 5 :
-        print(i)
+test_fun2 :: |a:int|:
+	ahoy |""
+
+test_fun3 :: |a:int|:
+	ahoy |""
+
+test_const :: "jkeywbk"
 
 switch day_of_week on
-    "Monday" : print("Start of the week")
-    "Friday" : print("End of the week")
+	"Monday" : print|"Start of the week"|
+	"Friday" : print|"End of the week"|
+	_: print	|"mid week"|
+? print_alphabet :: |a:int|:
+? 	print|"a","b","c"|
+? 	print|"b","b","c"|
+
+test:0
+loop i  from 1 to 2 do
+	test += 1
+	print|f"times {i}"
+	print|f"boss {i}"|
+	print|f"times {i}"
+	print|f"jooo {i}"|
+	if test	is 5 then break else skip
+	test_fun2|2|
 
 
-# Function definition
-factorial:: |n: int|  string:
-    if n is 0 then return 1
-      else return n times factorial(n minus 1)
+? BONK::"bonk"
+? CONK :: "";
 
-loop till i is 3 :
-    print("Looping: " plus i)
-    i plus_equals 1
+? ? loop i till
+? switch day_of_week on
+?   "Monday" : print|"Start of the week"|
+?   "Friday" : print|"End of the week"|
+?   _:print	|"mid week"|
 
-? Main program
-func main() {
-    # Variables
-    name: string
-    name: "Ahoy"
 
-    # Boolean
-    is_ready: bool
-    is_ready: true
+test_fun|98,"bob"|
 
-    # Numbers
-    count: int
-    count: 42
+test_fun3 :: |a:int|:
+	print||
 
-    pi: float
-    pi: 3.14159
-
-    # Print statement
-    print("Welcome to " plus name)
-
-    # Loop example
-    loop i to 5 {
-        print("Count: " plus i)
-    }
-
-    # Conditional
-    if count greater_than 10 then {
-        print("Count is large")
-    } elseif count is 10 then {
-        print("Count is exactly 10")
-    } else {
-        print("Count is small")
-    }
-
-    # Switch statement
-    switch name {
-        "Ahoy": {
-            print("Hello Ahoy!")
-        }
-        "World": {
-            print("Hello World!")
-        }
-    }
-
-    # Function call
-    result: factorial(5)
-    print("Factorial: " plus result)
-}
-
-main()
+test_fun| 8,"bob"|
+test_fun2| 8,"bob"|
