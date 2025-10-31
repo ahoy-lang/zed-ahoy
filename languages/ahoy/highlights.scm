@@ -1,7 +1,5 @@
-; Comments
-(comment) @comment
-
 ; Keywords
+
 [
   "if"
   "then"
@@ -24,43 +22,73 @@
   "program"
 ] @keyword
 
-; Control flow statements
-(break_statement) @keyword
-(skip_statement) @keyword
+; Statement keywords
+(halt_statement) @keyword
+(next_statement) @keyword
 
-; Function declarations - highlight the function name
-(function_declaration
-  name: (identifier) @function)
+; Function calls
 
-; Constant declarations - highlight as constants (orange)
-(constant_declaration
-  name: (identifier) @constant)
-
-; Function calls - highlight function names  
 (call_expression
   function: (identifier) @function)
 
-; Method calls
-(method_call
-  method: (identifier) @function.method)
+; Function definitions
 
-; Built-in types
-(type) @type.builtin
+(function_declaration
+  name: (identifier) @function)
 
-; Struct declarations
-(struct_declaration
-  name: (identifier) @type)
+; Built-in functions
 
-; Enum declarations  
-(enum_declaration
-  name: (identifier) @type)
+(call_expression
+  function: (identifier) @function.builtin
+  (#match? @function.builtin "^(ahoy|ahoyf|print|printf|sprintf|sahoyf)$"))
 
-; Parameters
+; Types
+
+(type) @type
+
+[
+  "int"
+  "float"
+  "string"
+  "bool"
+  "dict"
+  "vector2"
+  "color"
+] @type.builtin
+
+; Variables
+
+(identifier) @variable
+
 (parameter
   name: (identifier) @variable.parameter)
 
+(variable_declaration
+  name: (identifier) @variable)
+
+(constant_declaration
+  name: (identifier) @constant)
+
+(struct_declaration
+  name: (identifier) @type)
+
+(struct_field
+  name: (identifier) @property)
+
 ; Operators
+
 [
+  "plus"
+  "minus"
+  "times"
+  "div"
+  "mod"
+  "greater_than"
+  "less_than"
+  "is"
+  "and"
+  "or"
+  "not"
   "+"
   "-"
   "*"
@@ -70,23 +98,13 @@
   "<"
   ">="
   "<="
-  "is"
-  "and"
-  "or"
-  "not"
-  "plus"
-  "minus"
-  "times"
-  "div"
-  "mod"
-  "greater_than"
-  "less_than"
+  "??"
 ] @operator
 
 ; Punctuation
+
 [
   ":"
-  "::"
   ";"
   ","
   "|"
@@ -99,13 +117,22 @@
   "}"
   "["
   "]"
+  "<"
+  ">"
 ] @punctuation.bracket
 
 ; Literals
+
 (string) @string
 (char) @string.special
 (number) @number
 (boolean) @constant.builtin
 
-; Identifiers (default - will be overridden by more specific matches above)
-(identifier) @variable
+; Comments
+
+(comment) @comment
+
+; Imports
+
+(import_statement
+  path: (string) @string.special)
