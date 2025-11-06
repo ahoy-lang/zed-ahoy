@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Run File",
+    "command": "ahoy",
+    "args": ["$ZED_FILE"],
+    "tags": ["ahoy-program"]
+  },
+  {
+    "label": "Compile File",
+    "command": "ahoy",
+    "args": ["-c", "$ZED_FILE"],
+    "tags": ["ahoy-program"]
+  }
+]
