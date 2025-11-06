@@ -17,3 +17,7 @@
 ; Struct declarations
 (struct_declaration
   name: (identifier) @name) @item
+
+; Program declaration
+(program_declaration
+  name: (identifier) @name) @item

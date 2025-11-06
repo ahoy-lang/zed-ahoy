@@ -8,19 +8,21 @@
   "loop"
   "do"
   "to"
-  "from"
   "in"
   "till"
   "switch"
   "on"
-  "return"
-  "import"
   "when"
+  "import"
   "struct"
   "type"
   "enum"
   "program"
 ] @keyword
+
+[
+  "return"
+] @keyword.return
 
 ; Statement keywords
 (halt_statement) @keyword
@@ -43,6 +45,9 @@
   (#match? @function.builtin "^(ahoy|ahoyf|print|printf|sprintf|sahoyf)$"))
 
 ; Types
+
+(enum_declaration
+  name: (identifier) @type)
 
 (type) @type
 
@@ -127,6 +132,10 @@
 (char) @string.special
 (number) @number
 (boolean) @constant.builtin
+
+; Typed object literals
+(typed_object_literal
+  type_name: (identifier) @type)
 
 ; Comments
 
