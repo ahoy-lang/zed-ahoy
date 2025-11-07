@@ -1,6 +1,6 @@
 id = "ahoy"
 name = "Ahoy"
-version = "0.2.0"
+version = "0.2.1"
 schema_version = 1
 authors = ["Ahoy Contributors"]
 description = "Ahoy language support for Zed with LSP"

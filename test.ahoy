@@ -10,8 +10,9 @@ test_fun2 :: |a:int|:
 test_fun3 :: |a:int|:
 	ahoy |""
 
-test_const :: "jkeywbk"
+test_const :: "jkeywb"
 
+day_of_week: "Wednesday"
 switch day_of_week on
 	"Monday" : print|"Start of the week"|
 	"Friday" : print|"End of the week"|
@@ -21,13 +22,13 @@ switch day_of_week on
 ? 	print|"b","b","c"|
 
 test:0
-loop i  from 1 to 2 do
+loop i:1:
 	test += 1
 	print|f"times {i}"
 	print|f"boss {i}"|
 	print|f"times {i}"
 	print|f"jooo {i}"|
-	if test	is 5 then break else skip
+	if test	is 5 then halt else next
 	test_fun2|2|
 
 
@@ -41,10 +42,8 @@ loop i  from 1 to 2 do
 ?   _:print	|"mid week"|
 
 
-test_fun|98,"bob"|
 
 test_fun3 :: |a:int|:
 	print||
 
-test_fun| 8,"bob"|
-test_fun2| 8,"bob"|
+test_fun3|8|
