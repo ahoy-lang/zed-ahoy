@@ -1,4 +1,6 @@
-; Keywords
+; Keywords - ONLY highlight statement-level keywords, not anonymous tokens
+; Anonymous tokens like "do", "in", "to" are part of the syntax structure
+; but should NOT be highlighted separately (they would match in identifiers)
 
 [
   "if"
@@ -6,27 +8,17 @@
   "else"
   "anif"
   "loop"
-  "do"
-  "to"
-  "in"
-  "till"
   "switch"
-  "on"
   "when"
   "import"
   "struct"
-  "type"
   "enum"
   "program"
+  "return"
 ] @keyword
 
-[
-  "return"
-] @keyword.return
-
-; Statement keywords
-(halt_statement) @keyword
-(next_statement) @keyword
+; Control flow keywords
+; Note: "halt" and "next" are anonymous tokens in the grammar, cannot be highlighted
 
 ; Function calls
 
@@ -45,9 +37,6 @@
   (#match? @function.builtin "^(ahoy|ahoyf|print|printf|sprintf|sahoyf)$"))
 
 ; Types
-
-(enum_declaration
-  name: (identifier) @type)
 
 (type) @type
 
@@ -77,8 +66,16 @@
 (struct_declaration
   name: (identifier) @type)
 
-(struct_field
+(struct_field_oneline
   name: (identifier) @property)
+
+(struct_field_multiline
+  name: (identifier) @property)
+
+(enum_declaration
+  name: (identifier) @type)
+
+(type) @type
 
 ; Operators
 

@@ -17,6 +17,7 @@ switch day_of_week on
 	"Monday" : print|"Start of the week"|
 	"Friday" : print|"End of the week"|
 	_: print	|"mid week"|
+$
 ? print_alphabet :: |a:int|:
 ? 	print|"a","b","c"|
 ? 	print|"b","b","c"|
@@ -30,6 +31,7 @@ loop i:1:
 	print|f"jooo {i}"|
 	if test	is 5 then halt else next
 	test_fun2|2|
+end
 
 
 ? BONK::"bonk"
@@ -43,7 +45,9 @@ loop i:1:
 
 
 
-test_fun3 :: |a:int|:
-	print||
+example_function :: |a:int|int:
+	print|a|
+	return a
+end
 
 test_fun3|8|

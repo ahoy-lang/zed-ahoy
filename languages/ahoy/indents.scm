@@ -1,6 +1,5 @@
-; Indent after control structures and declarations
+; Indent after these nodes
 [
-  (block)
   (function_declaration)
   (if_statement)
   (loop_statement)
@@ -8,19 +7,15 @@
   (case_statement)
   (enum_declaration)
   (struct_declaration)
-  (struct_body)
   (when_statement)
-] @indent.begin
+] @indent
 
-; Closing brackets
+; Dedent on '$' keyword (block terminator)
+"$" @outdent
+
+; Dedent on closing brackets
 [
   ")"
   "]"
   "}"
-] @indent.branch @indent.end
-
-[
-  (comment)
-  (string)
-  (ERROR)
-] @indent.auto
+] @outdent
