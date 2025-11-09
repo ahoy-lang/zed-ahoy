@@ -15,6 +15,11 @@
   "enum"
   "program"
   "return"
+  "do"
+  "to"
+  "till"
+  "in"
+  "on"
 ] @keyword
 
 ; Control flow keywords
