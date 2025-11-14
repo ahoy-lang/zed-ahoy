@@ -12,6 +12,7 @@
   "when"
   "import"
   "struct"
+  "type"
   "enum"
   "program"
   "return"

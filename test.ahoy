@@ -7,14 +7,77 @@ import "std/io"
 	ahoy |""|
 $
 
-@ test_fun3 :: |a:int|:
-	ahoy |"",a|
-	day_of_week: "Wednesday"
-	switch day_of_week on
-		"Monday" : print|"Start of the week"|
-		"Friday" : print|"End of the week"|
+@ test_fun3 :: |a:int|void:
+	ahoy |"",a|;
+	? switch day_of_week on
+	? 	"Monday" : print|"Start of the week"|
+	? 	"Friday" : print|"End of the week"|
+	? 	_: print	|"mid week"|
+	day_of_week: "Wednesday";
+	switch day_of_week:
+		on "Monday" ,"Tuesday",1:
+			print|"start of the wek"|
+			print|"Start of the week"|
+			print|"Start of the week"|
+		on "Friday" :
+			print|"End of the week"|
+			print|"End of the week"|
+		_:
+			print	|"mid week"|
+			print	|"mid week"|
+			print	|"mid week"|
+	$
+
+	day_of_week: "Wednesday";
+	switch day_of_week:
+		on "Monday" : 29
+		on "Friday" : "jkljlk"
 		_: print	|"mid week"|
 	$
+
+	day_of_week_message :int= switch day_of_week: ? as no type specified therefore should infer type therefore all returns need to be of same type
+		on "Monday" : 88
+		on "Friday" : 90
+		on "Thursday": 90
+		on "Tuesday" : 89
+		on "Saturday" : 90
+		_: 980
+	$
+
+	day_of_week_message2 :string = switch day_of_week:
+		on "Mondy" : "Start of the week"
+		on "Tuesday" :"function"  ? should give linting error expected type string as return
+		on "Thursday" : "Almost weekend"? should give linting error expected type string as return
+		on "Friday" : "End of the week"
+		on "Saturday" : returns_two_things	|| ? should give linting error expected type string as return
+		_: "mid week"
+	$
+	day_of_week_message3,day_number :(string, int) = switch day_of_week:
+		on "Monday" : "Start of the week",1
+		on "Sarturday" : "Start of the week" ,2? expected return values (string,int) got (int,string)
+		on "Tuesday" : "Start of the week",32 ? expected two return values (string,int) got 1
+		on "Friday" : "End of the week",5 ? expected two return values (string,int) got 3
+		_: "mid week",3
+	$
+$
+
+@ my_func :: ||infer:
+			return 1, 2, "three"
+$
+one1 , two1, three1 : my_func||  ? Unpacks the returned tuple into variables
+one , two, three : (int, int, string) = my_func||  ? Unpacks the returned tuple into variables
+
+four	:4
+? one , two: three, four   ? tuple assignment swapping values one now contains 3 two contains 4
+? should infer types of one, two as int, three as string not infer or any.
+print|f"One: {one}, Two: {two}, Three: {three}\n"|
+
+
+@ returns_string :: || int:
+	return 23
+$
+@ returns_two_things :: || string, string:
+	return "hello","world"
 $
 
 test_const :: "jkeywb"
@@ -24,18 +87,44 @@ test_const :: "jkeywb"
 ? 	print|"b","b","c"|
 
 test:0
-loop i:0:
-	i = i + 1
-	print|f"times {i}"
-	print|f"boss {i}"|
-	print|f"times {i}"
-	print|f"jooo {i}"|
-	if test	is 5 then halt else next
-	test_fun2|2|
+bosses : [1,2,3,4,5,6,7,8,9,10]
+? loop boss in bosses:
+? i = i + 1
+print|f"times {boss}";
+? print|f"boss {i}"|
+? print|f"times {i}"
+? print|f"jooo {i}"|
+? if  test is 10 then print|"ten"|;
+? halt;
+if test	is 5 then $ ? currently gives linter error superflous $ but shouldn't
+if test	is 5 then print|"test"| else print|"tesnlit"|$ ? currently gives linter error superflous $ but shouldn't
+if test is 10: print|"not ten"| anif test is 9: halt $ ? currently gives linter error superflous $ but shouldn't
+loop i:0 to 10 : print|f"looping {i} "| $? currently gives linter error superflous $ but shouldn't
+loop i:0 to 10 do print|f"looping {i} "|$ ? currently gives linter error superflous $ but shouldn't
+loop i:0 to 10 :
+	print|f"looping {i} "|
+	print|f"looping....  {i} "|
 $
+loop i:0 to 10 do print|f"looping {i} "|$ ? should linter error required $ to close block
+loop i:0 to 10 do
+	print|f"looping {i} "|
+	print|f"looping....  {i} "|
+$
+loop i:0 to 10:
+	print|f"looping {i} "|
+	print|f"looping....  {i} "|
+$
+? $
+
+loop i:0 to 10 do
+	print|"hello"|
+	print|"fucntional"|
+$
+? if test is 5: print|"done"|
 
 
-? BONK::"bonk"
+
+BONK::"bonk"
 ? CONK :: "";
 
 ? ? loop i till
@@ -46,9 +135,10 @@ $
 
 
 
-@ example_function :: |a:int|int:
+@ example_function :: |a:int|infer:
 	print|a|
 	return a
 $
 
-test_fun2|8|
+test : example_function|8|
+print|test|
