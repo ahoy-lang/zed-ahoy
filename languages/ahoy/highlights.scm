@@ -1,7 +1,4 @@
-; Keywords - ONLY highlight statement-level keywords, not anonymous tokens
-; Anonymous tokens like "do", "in", "to" are part of the syntax structure
-; but should NOT be highlighted separately (they would match in identifiers)
-
+; Keywords
 [
   "if"
   "then"
@@ -12,8 +9,9 @@
   "when"
   "import"
   "struct"
-  "type"
   "enum"
+  "alias"
+  "union"
   "program"
   "return"
   "do"
@@ -21,6 +19,8 @@
   "till"
   "in"
   "on"
+  "union"
+  "alias"
 ] @keyword
 
 ; Control flow keywords
@@ -109,6 +109,9 @@
   "??"
 ] @operator
 
+; Function declaration marker
+["@"] @keyword.function
+
 ; Punctuation
 
 [
@@ -139,6 +142,10 @@
 ; Typed object literals
 (typed_object_literal
   type_name: (identifier) @type)
+
+; Object literal properties
+(object_pair
+  key: (identifier) @property)
 
 ; Comments
 

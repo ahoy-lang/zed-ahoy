@@ -60,6 +60,19 @@ impl zed::Extension for AhoyExtension {
             cached_binary_path: None,
         }
     }
+
+    fn language_server_workspace_configuration(
+        &mut self,
+        language_server_id: &LanguageServerId,
+        worktree: &Worktree,
+    ) -> Result<Option<serde_json::Value>> {
+        let settings = LspSettings::for_worktree(language_server_id.as_ref(), worktree)
+            .ok()
+            .and_then(|lsp_settings| lsp_settings.settings.clone())
+            .unwrap_or_default();
+        Ok(Some(settings))
+    }
+
     fn language_server_command(
         &mut self,
         language_server_id: &LanguageServerId,
@@ -88,17 +101,6 @@ impl zed::Extension for AhoyExtension {
         Ok(settings)
     }
 
-    fn language_server_workspace_configuration(
-        &mut self,
-        language_server_id: &LanguageServerId,
-        worktree: &Worktree,
-    ) -> Result<Option<serde_json::Value>> {
-        let settings = LspSettings::for_worktree(language_server_id.as_ref(), worktree)
-            .ok()
-            .and_then(|lsp_settings| lsp_settings.settings.clone())
-            .unwrap_or_default();
-        Ok(Some(settings))
-    }
 }
 
 zed::register_extension!(AhoyExtension);
