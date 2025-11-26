@@ -6,6 +6,8 @@
 	ahoy |""|
 $
 
+alias my_int: int
+
 @ test_fun3 :: |a:int|void:
 	ahoy |"",a|;
 	? switch day_of_week on
@@ -134,7 +136,7 @@ BONK::"bonk"
 
 
 
-@ example_function :: |a:int|infer:
+@ example_function :: |a:int| infer:
 	print|a|
 	return a
 $

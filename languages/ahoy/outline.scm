@@ -57,3 +57,34 @@
 (constant_declaration
   name: (identifier) @name
   "::") @item
+
+; Alias declarations
+(alias_declaration
+	("alias" @context)
+	name: (identifier) @name
+	target_type: (type) @context
+)
+
+(union_declaration
+	("union" @context)
+	name: (identifier) @name
+	types: (type_list) @context
+)
+
+; // Alias declaration
+; 		alias_declaration: ($) =>
+; 			seq(
+; 				"alias",
+; 				field("name", $.identifier),
+; 				":",
+; 				field("target_type", $.type),
+; 			),
+
+; 		// Union declaration
+; 		union_declaration: ($) =>
+; 			seq(
+; 				"union",
+; 				field("name", $.identifier),
+; 				":",
+; 				field("types", $.type_list),
+; 			),
