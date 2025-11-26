@@ -79,7 +79,7 @@ $
 	return "hello","world"
 $
 
-test_const :: "jkeywb"
+test_const :: "jkeywb";
 
 ? print_alphabet :: |a:int|:
 ? 	print|"a","b","c"|
