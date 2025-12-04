@@ -19,6 +19,7 @@
   "till"
   "in"
   "on"
+  "type"
 ] @keyword
 
 ; Control flow statement keywords
