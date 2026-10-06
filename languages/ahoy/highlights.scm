@@ -122,6 +122,8 @@
   ";"
   ","
   "|"
+  "="
+  "$"
 ] @punctuation.delimiter
 
 [
@@ -138,6 +140,7 @@
 ; Literals
 
 (string) @string
+(f_string) @string
 (char) @string.special
 (number) @number
 (boolean) @constant.builtin
