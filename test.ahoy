@@ -8,7 +8,7 @@ $
 
 alias my_int: int
 
-@ test_fun3 :: |a:int|void:
+@ test_fun3 |a:int| void:
 	ahoy |"",a|;
 	? switch day_of_week on
 	? 	"Monday" : print|"Start of the week"|
@@ -99,8 +99,8 @@ print|f"times {boss}";
 ? halt;
 if test	is 5 then $ ? currently gives linter error superflous $ but shouldn't
 if test	is 5 then print|"test"| else print|"tesnlit"|$ ? currently gives linter error superflous $ but shouldn't
-if test is 10: print|"not ten"| anif test is 9: halt $ ? currently gives linter error superflous $ but shouldn't
-loop i:0 to 10 : print|f"looping {i} "| $? currently gives linter error superflous $ but shouldn't
+if test is 10 then print|"not ten"| anif test is 9 then halt $ ? currently gives linter error superflous $ but shouldn't
+loop i:0 to 10 do print|f"looping {i} "| $ ? currently gives linter error superflous $ but shouldn't
 loop i:0 to 10 do print|f"looping {i} "|$ ? currently gives linter error superflous $ but shouldn't
 loop i:0 to 10 do
 	print|f"looping {i} "|
