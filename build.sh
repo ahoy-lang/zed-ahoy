@@ -19,8 +19,8 @@ fi
 
 # Build the extension
 echo "2. Building extension WASM..."
-cargo build --release --target wasm32-wasip1
-cp target/wasm32-wasip1/release/ahoy.wasm extension.wasm
+cargo build --release --target wasm32-wasip2
+cp target/wasm32-wasip2/release/ahoy.wasm extension.wasm
 echo "   ✓ Extension built"
 echo ""
 

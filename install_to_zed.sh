@@ -21,15 +21,15 @@ fi
 
 echo "Building extension..."
 
-# Add wasm32-wasip1 target if not installed
-if ! rustup target list | grep -q "wasm32-wasip1 (installed)"; then
-    echo "Installing wasm32-wasip1 target..."
-    rustup target add wasm32-wasip1
+# Add wasm32-wasip2 target if not installed
+if ! rustup target list | grep -q "wasm32-wasip2 (installed)"; then
+    echo "Installing wasm32-wasip2 target..."
+    rustup target add wasm32-wasip2
 fi
 
 # Build the extension
 cd "$SCRIPT_DIR"
-cargo build --release --target wasm32-wasip1
+cargo build --release --target wasm32-wasip2
 
 if [ $? -ne 0 ]; then
     echo "❌ Build failed"
@@ -40,7 +40,7 @@ echo "✓ Build successful"
 echo ""
 
 # Copy wasm to extension root
-cp target/wasm32-wasip1/release/ahoy.wasm extension.wasm
+cp target/wasm32-wasip2/release/ahoy.wasm extension.wasm
 
 echo "Installing extension to Zed..."
 

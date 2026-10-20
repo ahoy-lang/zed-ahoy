@@ -17,12 +17,12 @@ echo "   ✓ Clean complete"
 echo ""
 
 echo "2. Building extension WASM..."
-cargo build --release --target wasm32-wasip1
+cargo build --release --target wasm32-wasip2
 echo "   ✓ WASM built"
 echo ""
 
 echo "3. Copying WASM to extension root..."
-cp target/wasm32-wasip1/release/ahoy.wasm extension.wasm
+cp target/wasm32-wasip2/release/ahoy.wasm extension.wasm
 echo "   ✓ WASM copied"
 echo ""
 
