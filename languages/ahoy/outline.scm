@@ -16,12 +16,7 @@
   name: (identifier) @name) @item
 
 ; Struct fields - show with type (pattern: name: type)
-(struct_field_oneline
-  name: (identifier) @name
-  ":"
-  type: (type) @context) @item
-
-(struct_field_multiline
+(struct_field
   name: (identifier) @name
   ":"
   type: (type) @context) @item
@@ -63,28 +58,10 @@
 	("alias" @context)
 	name: (identifier) @name
 	target_type: (type) @context
-)
+) @item
 
 (union_declaration
 	("union" @context)
 	name: (identifier) @name
 	types: (type_list) @context
-)
-
-; // Alias declaration
-; 		alias_declaration: ($) =>
-; 			seq(
-; 				"alias",
-; 				field("name", $.identifier),
-; 				":",
-; 				field("target_type", $.type),
-; 			),
-
-; 		// Union declaration
-; 		union_declaration: ($) =>
-; 			seq(
-; 				"union",
-; 				field("name", $.identifier),
-; 				":",
-; 				field("types", $.type_list),
-; 			),
+) @item
