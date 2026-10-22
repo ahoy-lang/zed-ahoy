@@ -35,11 +35,11 @@ zed-ahoy/
 ## Features Implemented
 
 ### ✅ Syntax Highlighting
-- Keywords: `if`, `then`, `else`, `elseif`, `anif`, `loop`, `to`, `in`, `switch`, `func`, `return`, `import`, `when`
+- Keywords: `if`, `then`, `else`, `elif`, `guard`, `loop`, `to`, `in`, `switch`, `on`, `fn`, `return`, `import`, `when`
 - Function declarations and calls
 - Built-in functions: `ahoy`, `print`
 - Types: `int`, `float`, `string`, `bool`, `dict`
-- Operators: `plus`, `minus`, `times`, `div`, `mod`, `greater_than`, `lesser_than`, `is`, `and`, `or`, `not`, arithmetic symbols
+- Operators: `+`, `-`, `*`, `/`, `%`, `**`, `<`, `>`, `<=`, `>=`, `is`, `and`, `or`, `not`
 - Literals: strings, characters, numbers, booleans
 - Comments (line comments starting with `#`)
 - Import statements
@@ -127,13 +127,13 @@ func factorial(n: int) {
     if n is 0 then {
         return 1
     } else {
-        return n times factorial(n minus 1)
+        return n * factorial(n - 1)
     }
 }
 
 func main() {
     result: factorial(5)
-    print("Result: " plus result)
+    print("Result: " + result)
 }
 
 main()

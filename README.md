@@ -37,16 +37,19 @@ Then restart Zed and open any `.ahoy` file!
 The LSP provides all the smart IDE features. Install it first:
 
 ```bash
-cd ../ahoy
-./install_lsp.sh
+cd ../ahoy-lsp
+make install
 ```
 
-This installs `ahoy-lsp` to `/usr/local/bin/` or `~/.local/bin/`.
+This installs `~/.local/bin/ahoy-lsp` as a **symlink** to the repository
+binary, so later builds update the same command automatically. Never copy the
+binary: a copy goes stale on the next build.
 
 Verify installation:
 ```bash
 which ahoy-lsp
-# Should output: /usr/local/bin/ahoy-lsp
+readlink -f "$(which ahoy-lsp)"
+ahoy-lsp --version
 ```
 
 ### 2. Install Rust toolchain

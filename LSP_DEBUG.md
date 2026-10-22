@@ -4,7 +4,7 @@
 
 Before debugging, verify these basics:
 
-- [ ] `ahoy-lsp` is installed: `which ahoy-lsp` (should show `/usr/local/bin/ahoy-lsp`)
+- [ ] `ahoy-lsp` is installed: `which ahoy-lsp` (should show `~/.local/bin/ahoy-lsp`, a symlink to the repository binary)
 - [ ] Zed extension is installed: `ls -la ~/.local/share/zed/extensions/installed/ahoy`
 - [ ] File has `.ahoy` extension
 - [ ] Zed has been restarted after installation
@@ -18,9 +18,10 @@ Test the LSP server manually:
 ahoy-lsp
 
 # Press Ctrl+C to exit
-# If you get "command not found", install it:
-cd /path/to/ahoy-lang/ahoy
-./install_lsp.sh
+# If you get "command not found", install it as a symlink:
+cd /path/to/ahoy-lang/ahoy-lsp
+make install
+ahoy-lsp --version
 ```
 
 ## Step 2: Check Zed Extension Installation
@@ -85,9 +86,12 @@ grep -i "lsp" ~/.local/share/zed/logs/Zed.log | tail -20
 
 **Error: "command not found: ahoy-lsp"**
 ```
-Fix: Install ahoy-lsp to PATH
-cd /path/to/ahoy/lsp
-sudo cp ahoy-lsp /usr/local/bin/
+Fix: Install ahoy-lsp to PATH as a symlink (a copied binary goes stale)
+cd /path/to/ahoy-lang/ahoy-lsp
+make install
+which ahoy-lsp
+readlink -f "$(which ahoy-lsp)"
+ahoy-lsp --version
 ```
 
 **Error: "failed to start language server"**
@@ -261,6 +265,8 @@ echo "=== Ahoy LSP Verification ==="
 echo ""
 echo "1. Checking ahoy-lsp binary..."
 which ahoy-lsp && echo "   ✓ Found" || echo "   ✗ Not found"
+readlink -f "$(which ahoy-lsp 2>/dev/null)" 2>/dev/null || true
+ahoy-lsp --version 2>/dev/null || true
 echo ""
 echo "2. Checking Zed extension..."
 [ -e ~/.local/share/zed/extensions/installed/ahoy ] && echo "   ✓ Installed" || echo "   ✗ Not installed"
@@ -302,10 +308,9 @@ echo "If all checks pass, restart Zed and open a .ahoy file"
    rm -rf ~/.local/share/zed/extensions/installed/ahoy
    rm -rf zed-ahoy/target
    
-   # Reinstall LSP
-   cd ahoy/lsp
-   go build -o ahoy-lsp .
-   sudo cp ahoy-lsp /usr/local/bin/
+   # Reinstall LSP as a symlink
+   cd ahoy-lsp
+   make install
    
    # Reinstall extension
    cd ../../zed-ahoy

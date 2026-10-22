@@ -12,7 +12,7 @@ name: "Alice"
 is_active: true
 
 ? Test 3: If statement
-if age greater 18 then
+if age > 18 then
     ahoy "Adult"
 else
     ahoy "Minor"
@@ -25,7 +25,7 @@ end
 
 ? Test 5: Function with return type
 add :: |x:int, y:int| int  do
-    return x plus y
+    return x + y
 end
 
 ? Test 6: Use the function (test go-to-definition)

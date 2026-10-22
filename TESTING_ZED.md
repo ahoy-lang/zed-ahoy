@@ -41,13 +41,13 @@ Create `test_zed.ahoy`:
 
 ? ==================== FUNCTION DEFINITIONS ====================
 add :: |a:int, b:int| int:
-    return a plus b
+    return a + b
 
 multiply :: |x:int, y:int| int:
-    return x times y
+    return x * y
 
 greet :: |name:string| string:
-    return "Hello, " plus name
+    return "Hello, " + name
 
 ? ==================== VARIABLES ====================
 num1: 10
@@ -57,9 +57,9 @@ product: multiply|num1, num2|
 message: greet|"World"|
 
 ? ==================== CONDITIONALS ====================
-if sum greater_than product then
+if sum > product then
     print|"Sum is greater"|
-anif product greater_than sum then
+elif product > sum then
     print|"Product is greater"|
 else
     print|"They are equal"|

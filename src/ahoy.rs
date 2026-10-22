@@ -7,6 +7,28 @@ struct AhoyExtension {
 }
 
 impl AhoyExtension {
+    fn debug_logging_enabled(
+        &self,
+        language_server_id: &LanguageServerId,
+        worktree: &Worktree,
+    ) -> bool {
+        let Ok(settings) =
+            LspSettings::for_worktree(language_server_id.as_ref(), worktree)
+        else {
+            return false;
+        };
+
+        let debug_value = |value: &Option<serde_json::Value>| {
+            value
+                .as_ref()
+                .and_then(|value| value.get("debug"))
+                .and_then(|debug| debug.as_bool())
+                .unwrap_or(false)
+        };
+
+        debug_value(&settings.settings) || debug_value(&settings.initialization_options)
+    }
+
     fn language_server_binary_path(
         &mut self,
         language_server_id: &LanguageServerId,
@@ -81,12 +103,17 @@ impl zed::Extension for AhoyExtension {
         let ahoy_lsp_binary_path =
             self.language_server_binary_path(language_server_id, worktree)?;
 
+        // Debug logging writes per-symbol lines to stderr and is opt-in. The
+        // server discards them unless AHOY_LSP_DEBUG is set.
+        let mut env = Vec::new();
+        if self.debug_logging_enabled(language_server_id, worktree) {
+            env.push(("AHOY_LSP_DEBUG".to_string(), "1".to_string()));
+        }
+
         Ok(zed::Command {
             command: ahoy_lsp_binary_path,
             args: vec![],
-            env: vec![("AHOY_LSP_DEBUG".to_string(), "1".to_string())]
-                .into_iter()
-                .collect(),
+            env: env.into_iter().collect(),
         })
     }
 

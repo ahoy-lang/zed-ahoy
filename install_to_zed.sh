@@ -68,8 +68,8 @@ else
     echo "The extension needs ahoy-lsp to provide LSP features."
     echo "To install it:"
     echo ""
-    echo "  cd $(dirname "$SCRIPT_DIR")/ahoy"
-    echo "  ./install_lsp.sh"
+    echo "  cd $(dirname "$SCRIPT_DIR")/ahoy-lsp"
+    echo "  make install"
     echo ""
 fi
 

@@ -35,7 +35,7 @@ Create `.zed/settings.json` in your project root:
   "lsp": {
     "ahoy-lsp": {
       "binary": {
-        "path": "./ahoy/lsp/ahoy-lsp"
+        "path": "../ahoy-lsp/ahoy-lsp"
       }
     }
   }
@@ -188,11 +188,10 @@ Here's a complete Zed configuration for Ahoy development:
 
 ## Environment Variables
 
-The Ahoy LSP extension sets these environment variables:
+The Ahoy LSP extension sets this environment variable only when debug
+logging is enabled in settings:
 
-- `AHOY_LSP_DEBUG=1` - Enables debug logging
-
-To add more environment variables, you'll need to modify the extension source.
+- `AHOY_LSP_DEBUG=1` - Enables verbose debug logging (off by default)
 
 ## Binary Resolution Order
 
@@ -205,6 +204,19 @@ The extension looks for `ahoy-lsp` in this order:
    - `~/.local/bin/ahoy-lsp`
    - `/usr/local/bin/ahoy-lsp`
    - `/usr/bin/ahoy-lsp`
+
+Install the command with `make install` in `ahoy-lsp`; that creates a symlink
+to the repository's binary. Never copy the binary into `~/.local/bin` or
+`/usr/local/bin`: the copy goes stale as soon as the next build replaces
+`ahoy-lsp`. Verify with:
+
+```bash
+readlink -f "$(which ahoy-lsp)"
+ahoy-lsp --version
+```
+
+After rebuilding, restart Zed (or run "editor: restart language server"); a
+running language server keeps the binary image it was started with.
 
 ## Performance Settings
 
@@ -225,18 +237,20 @@ For better performance with large files:
 
 To see detailed LSP communication:
 
-1. Enable debug logging:
+1. Enable debug logging in your Zed settings:
    ```json
    {
      "lsp": {
        "ahoy-lsp": {
-         "initialization_options": {
+         "settings": {
            "debug": true
          }
        }
      }
    }
    ```
+   (The older `"initialization_options": {"debug": true}` form is also
+   recognized.)
 
 2. View logs:
    ```bash
@@ -274,11 +288,11 @@ Add custom keybindings for Ahoy in `~/.config/zed/keymap.json`:
 
 After updating the LSP server or extension:
 
-1. **Update server binary:**
+1. **Update server binary (symlink, never a copy):**
    ```bash
-   cd ahoy/lsp
-   go build -o ahoy-lsp .
-   cp ahoy-lsp ~/.local/bin/
+   cd ahoy-lsp
+   make install
+   ahoy-lsp --version
    ```
 
 2. **Update extension:**
@@ -330,11 +344,10 @@ And document in your README:
 ```markdown
 # Setup
 
-1. Install ahoy-lsp:
+1. Install ahoy-lsp (as a symlink):
    ```bash
-   cd ahoy/lsp
-   go build -o ahoy-lsp .
-   cp ahoy-lsp ~/.local/bin/
+   cd ahoy-lsp
+   make install
    ```
 
 2. Install Zed extension:

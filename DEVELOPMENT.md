@@ -77,7 +77,7 @@ Open Zed, go to Extensions panel, and use "Install Dev Extension" pointing to th
 ```ahoy
 # Sample Ahoy code
 func greet(name: string) {
-    print("Hello, " plus name)
+    print("Hello, " + name)
 }
 
 greet("World")
